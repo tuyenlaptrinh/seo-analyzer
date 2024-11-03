@@ -1,0 +1,41 @@
+{
+    "version": "0.8.0",
+    "name": "tuyenlaptrinh/seo-analyzer",
+    "description": "SEO Analyzer",
+    "keywords": ["SEO", "Analyzer", "onpage", "on page", "on", "page", "seo"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tuyen Pham",
+            "email": "tuyenlaptrinh@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "*",
+        "guzzlehttp/guzzle": "~6.0|7.*",
+        "ivopetkov/html5-dom-document-php": "1.*|2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.*|6.*|8.*",
+        "php-coveralls/php-coveralls": "~2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ],
+        "psr-4": {
+            "Tuyenlaptrinh\\SeoAnalyzer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tuyenlaptrinh\\SeoAnalyzer\\SeoServiceProvider"
+            ],
+            "aliases": {
+                "Seo": "Tuyenlaptrinh\\SeoAnalyzer\\SeoFacade"
+            }
+        }
+    }
+}
