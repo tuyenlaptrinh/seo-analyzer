@@ -1,10 +1,4 @@
 # PHP SEO Analyzer
-[![Build Status](https://travis-ci.org/madeITBelgium/SEO-Analyzer.svg?branch=master)](https://travis-ci.org/madeITBelgium/SEO-Analyzer)
-[![Coverage Status](https://coveralls.io/repos/github/madeITBelgium/SEO-Analyzer/badge.svg?branch=master)](https://coveralls.io/github/madeITBelgium/SEO-Analyzer?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/madeITBelgium/SEO-Analyzer/v/stable.svg)](https://packagist.org/packages/madeITBelgium/SEO-Analyzer)
-[![Latest Unstable Version](https://poser.pugx.org/madeITBelgium/SEO-Analyzer/v/unstable.svg)](https://packagist.org/packages/madeITBelgium/SEO-Analyzer)
-[![Total Downloads](https://poser.pugx.org/madeITBelgium/SEO-Analyzer/d/total.svg)](https://packagist.org/packages/madeITBelgium/SEO-Analyzer)
-[![License](https://poser.pugx.org/madeITBelgium/SEO-Analyzer/license.svg)](https://packagist.org/packages/madeITBelgium/SEO-Analyzer)
 
 With this (Laravel) package you can analyze the on-page SEO.
 
@@ -39,7 +33,7 @@ Detect main content
 Require this package in your `composer.json` and update composer.
 
 ```php
-"madeitbelgium/seo-analyzer": "^0.6"
+"tuyenlaptrinh/seo-analyzer": "^0.8"
 ```
 
 # Documentation
@@ -47,21 +41,15 @@ Require this package in your `composer.json` and update composer.
 ```php
 use Tuyenlaptrinh\SeoAnalyzer\SeoFacade as SEO;
 
-SEO::analyze('https://www.madeit.be');
+SEO::analyze('https://www.youtube.com');
 ```
 
 If you already have the HTML content of the page:
 ```php
 use Tuyenlaptrinh\SeoAnalyzer\SeoFacade as SEO;
 $html = "<html>....</html>";
-SEO::analyze('https://www.madeit.be', $html);
+SEO::analyze('https://www.youtube.com', $html);
 ```
-
-The complete documentation can be found at: [http://www.madeit.be/](http://www.madeit.be/)
-
-
-# Support
-Support github or mail: tjebbe.lievens@madeit.be
 
 # Contributing
 Please try to follow the psr-2 coding style guide. http://www.php-fig.org/psr/psr-2/
