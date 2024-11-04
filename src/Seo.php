@@ -541,7 +541,7 @@ class Seo
                 isset($attributes['charset'])
                 && !empty($attributes['charset'])
             ){
-                $charset = $attributes['charset']
+                $charset = $attributes['charset'];
             }
         }
         return $charset;
