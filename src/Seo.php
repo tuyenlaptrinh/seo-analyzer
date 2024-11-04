@@ -251,7 +251,7 @@ class Seo
             'alternate' => $this->doAlternateResult($document),
             'charset' => $this->doCharsetResult($document),
             'favicon' => $this->doFavicon($document),
-            'doctype' => $this->doDoctype($document),
+            'doctype' => $this->doDoctype($content),
             'document' => $content
         ];
         return $result;
@@ -500,10 +500,10 @@ class Seo
         return $favicon;
     }
 
-    private function doDoctype($document){
-        $document = mb_strtolower($document);
+    private function doDoctype($content){
+        $content = mb_strtolower($content);
         $result = false;
-        if(strpos($document,'<!doctype') !== false){
+        if(strpos($content,'<!doctype') !== false){
             $result = true;
         }
         return $result;        
