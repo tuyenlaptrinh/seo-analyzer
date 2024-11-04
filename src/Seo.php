@@ -248,6 +248,10 @@ class Seo
             'meta_tags' => $this->doMetaResult($document),
             'full_page'   => $fullPageResult,
             'main_text'   => $mainTxtResult,
+            'alternate' => $this->doAlternateResult($document),
+            'charset' => $this->doCharsetResult($document),
+            'favicon' => $this->doFavicon($document),
+            'doctype' => $this->doDoctype($document),
             'document' => $content
         ];
         return $result;
@@ -473,6 +477,92 @@ class Seo
         }
 
         return $return;
+    }
+    
+    private function doFavicon($document){
+        $favicon = '';
+        $elements = $document->querySelectorAll('link');
+        foreach ($elements as $element) {
+            $attributes = $element->getAttributes();
+            if(
+                isset($attributes['rel'])
+                && (
+                    $attributes['rel'] == 'shortcut icon'
+                    || $attributes['rel'] == 'icon'
+                    || $attributes['rel'] == 'favicon'
+                )
+                && isset($attributes['href'])
+                && !empty($attributes['href'])
+            ){
+                $favicon = $attributes['href'];
+            }
+        }
+        return $favicon;
+    }
+
+    private function doDoctype($document){
+        $document = mb_strtolower($document);
+        $result = false;
+        if(strpos($document,'<!doctype') !== false){
+            $result = true;
+        }
+        return $result;        
+    }
+
+    private function doCharsetResult($document){
+        $charset = '';
+        if(isset($this->headers['Content-Type']) && is_array($this->headers['Content-Type'])){
+            foreach($this->headers['Content-Type'] as $types){
+                $items = array_map('trim',explode(';',$types));
+                foreach($items as $item){
+                    if(strpos($item,'charset=') !== false){
+                        $charset = trim(str_replace('charset=','',$item));
+                    }
+                }
+            }
+        }
+        $elements = $document->querySelectorAll('meta');
+        foreach ($elements as $element) {
+            $attributes = $element->getAttributes();
+            if(
+                isset($attributes['http-equiv'])
+                && $attributes['http-equiv'] == 'Content-Type'
+                && isset($attributes['content'])
+                && !empty($attributes['content'])
+            ){
+                $items = array_map('trim',explode(';',$attributes['content']));
+                foreach($items as $item){
+                    if(strpos($item,'charset=') !== false){
+                        $charset = trim(str_replace('charset=','',$item));
+                    }
+                }
+            }
+            elseif(
+                isset($attributes['charset'])
+                && !empty($attributes['charset'])
+            ){
+                $charset = $attributes['charset']
+            }
+        }
+        return $charset;
+
+    }
+
+    private function doAlternateResult($document){
+        $language = '';
+        $elements = $document->querySelectorAll('link');
+        foreach ($elements as $element) {
+            $attributes = $element->getAttributes();
+            if(
+                isset($attributes['rel'])
+                && $attributes['rel'] == 'alternate'
+                && isset($attributes['hreflang'])
+                && !empty($attributes['hreflang'])
+            ){
+                $language = $attributes['hreflang'];
+            }
+        }
+        return $language;
     }
 
     private function doMetaResult($document){
