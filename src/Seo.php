@@ -88,7 +88,7 @@ class Seo
             $this->client = new Client([
                 'timeout'  => 10.0,
                 'headers'  => [
-                    'User-Agent' => 'Made I.T. Seo Analyzer',
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
                 ],
                 'verify' => true,
             ]);
@@ -247,8 +247,8 @@ class Seo
             'meta_tags' => $this->doMetaResult($document),
             'full_page'   => $fullPageResult,
             'main_text'   => $mainTxtResult,
+            'document' => $content
         ];
-
         return $result;
     }
 
