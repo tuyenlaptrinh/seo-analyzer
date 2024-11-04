@@ -233,6 +233,7 @@ class Seo
         ];
 
         $result = [
+            'time' => time(),
             'url'         => $url,
             'canonical'   => $canonical,
             'baseUrl'     => $this->baseUrl,
@@ -262,9 +263,9 @@ class Seo
         $this->headers = $response->getHeaders();
         $this->fileSize = $response->getBody()->getSize();
 
-        $body = (string) $response->getBody();
+        $html = (string) $response->getBody();
 
-        return $body;
+        return $html;
     }
 
     private function getTextContent($text)
