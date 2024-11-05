@@ -691,13 +691,14 @@ class Seo
         foreach ($elements as $element) {
             $attributes = $element->getAttributes();
             $img = [
-                'src'   => $attributes['data-lazy-src'] ?? ($attributes['src'] ?? null),
+                'src'   => $attributes['data-lazy-src'] ?? $attributes['data-src'] ?? ($attributes['src'] ?? null),
                 'alt'   => $attributes['alt'] ?? null,
                 'title' => $attributes['title'] ?? null,
             ];
             if (isset($attributes['alt'])) {
                 $content[] = $this->getTextContent($attributes['alt']);
             }
+            $imageUrl = '';
             $img['src'] = $this->fixUrl($img['src']);
 
             $images[] = $img;
